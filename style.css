@@ -1,0 +1,182 @@
+/* Define variáveis CSS globais para fácil customização */
+:root {
+    --primary-color: #00a8ff; /* Cor principal (azul) usada para destaques e botões */
+    --secondary-color: #0097e6; /* Cor secundária (azul mais escuro) para efeitos hover */
+    --background-color: #1e272e;  /* Cor de fundo da página inteira */
+    --container-background: #2f3640; /* Cor de fundo do container de login */
+    --text-color: #ffffff; /* Cor do texto principal (branco) */
+    --input-background: #353b48;  /* Cor de fundo dos campos de input */
+    --input-text-color: #dcdde1;  /* Cor do texto dentro dos inputs */
+    --border-radius: 0.5rem; /* Raio das bordas arredondadas usado em vários elementos */
+    --transition-speed: 0.3s; /* Duração padrão das transições/animações */
+}
+
+/* Reset CSS básico - remove margens e padding padrão e define box-sizing */
+* {
+    margin: 0; /* Remove margens externas de todos elementos */
+    padding: 0;  /* Remove preenchimento interno de todos elementos */
+    box-sizing: border-box;  /* Faz com que padding e border sejam incluídos na largura/altura do elemento */
+}
+
+/* Estiliza o corpo da página */
+body {
+    font-family: Arial, sans-serif; /* Define a fonte padrão */
+    background-color: var(--background-color); /* Aplica a cor de fundo usando variável CSS */
+    display: flex; /* Usa flexbox para centralizar conteúdo */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    min-height: 100vh; /* Faz o body ocupar pelo menos toda a altura da viewport */
+    color: var(--text-color); /* Define a cor do texto usando variável CSS */
+    overflow: hidden; /* Esconde barras de rolagem se o conteúdo estourar */
+}
+
+/* Estiliza o container principal de login */
+.login-container {
+    background-color: var(--container-background); /* Aplica cor de fundo do container */
+    padding: 2rem;   /* Adiciona espaço interno de 2rem em todos os lados */
+    border-radius: var(--border-radius); /* Arredonda as bordas usando a variável definida */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3); /* Adiciona sombra para efeito de elevação */
+    width: 90%;  /* Largura de 90% do container pai */
+    max-width: 20rem;  /* Limita a largura máxima a 20rem */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Define transições suaves */
+}
+
+/* Modifica o container quando o mouse está sobre ele */
+.login-container:hover {
+    transform: translateY(-5px);  /* Move o container 5px para cima */
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4); /* Aumenta a sombra para efeito de elevação maior */
+}
+
+/* Estiliza o título h1 */
+h1 {
+    text-align: center;  /* Centraliza o texto */
+    margin-bottom: 1.5rem; /* Adiciona espaço abaixo do título */
+    font-size: 1.5rem;  /* Define o tamanho da fonte */
+    position: relative; /* Posicionamento relativo para o pseudo-elemento ::after */
+    overflow: hidden; /* Esconde qualquer conteúdo que ultrapasse os limites */
+}
+
+/* Cria uma linha decorativa após o h1 usando pseudo-elemento */
+h1::after {
+    content: ''; /* Necessário para o pseudo-elemento aparecer */
+    position: absolute;  /* Posiciona absolutamente em relação ao h1 */
+    bottom: 0; /* Alinha à parte inferior do h1 */
+    left: 50%;  /* Começa no meio do h1 */
+    width: 0;  /* Inicialmente sem largura */
+    height: 2px; /* Altura da linha de 2px */
+    background-color: var(--primary-color); /* Cor da linha usando variável CSS */
+    transition: width 0.3s ease, left 0.3s ease; /* Transição suave para largura e posição */
+}
+
+/* Modifica a linha decorativa quando o mouse está sobre o container */
+.login-container:hover h1::after {
+    width: 100%; /* Aumenta para 100% de largura */
+    left: 0;  /* Move para começar da esquerda */
+}
+
+/* Configura o formulário com layout flexbox */
+form {
+    display: flex; /* Usa flexbox para organizar elementos */
+    flex-direction: column;  /* Organiza elementos em coluna */
+}
+
+/* Estiliza cada grupo de input (label + input) */
+.input-group {
+    margin-bottom: 1rem; /* Adiciona espaço abaixo de cada grupo */
+    position: relative; /* Posicionamento relativo para posicionar elementos filhos */
+}
+
+/* Estiliza os labels dos inputs */
+label {
+    display: block; /* Faz o label ocupar toda a largura disponível */
+    margin-bottom: 0.5rem; /* Adiciona espaço abaixo do label */
+    font-size: 0.9rem;  /* Define tamanho da fonte menor */
+    transition: color 0.3s ease;  /* Transição suave para mudança de cor */
+}
+
+/* Estiliza os inputs de texto e senha */
+input {
+    width: 100%; /* Ocupa 100% da largura disponível */
+    padding: 0.75rem;  /* Adiciona preenchimento interno */
+    border: 1px solid #4a4a4a;  /* Adiciona borda fina cinza escura */
+    border-radius: var(--border-radius); /* Arredonda as bordas usando variável */
+    font-size: 1rem;  /* Define tamanho da fonte */
+    transition: border-color var(--transition-speed), box-shadow 0.3s ease; /* Transições */
+    background-color: var(--input-background); /* Cor de fundo usando variável */
+    color: var(--input-text-color); /* Cor do texto dentro do input */
+}
+
+/* Modifica o input quando ele está focado */
+input:focus {
+    outline: none;  /* Remove o contorno padrão do navegador */
+    border-color: var(--primary-color); /* Muda a cor da borda para a cor primária */
+    box-shadow: 0 0 0 3px rgba(0, 168, 255, 0.2); /* Adiciona brilho (glow) ao redor */
+}
+
+/* Modifica o label quando o mouse está sobre o grupo de input */
+.input-group:hover label {
+    color: var(--primary-color);  /* Muda a cor do texto para a cor primária */
+}
+
+/* Estiliza o botão de submit */
+button {
+    background-color: var(--primary-color); /* Cor de fundo usando variável */
+    color: white;  /* Cor do texto branca */
+    border: none;  /* Remove borda */
+    padding: 0.75rem; /* Adiciona preenchimento interno */
+    border-radius: var(--border-radius); /* Arredonda as bordas */
+    font-size: 1rem;  /* Define tamanho da fonte */
+    cursor: pointer;  /* Muda o cursor para mãozinha ao passar o mouse */
+    transition: background-color var(--transition-speed), transform 0.2s ease; /* Transições */
+    position: relative; /* Posicionamento relativo para o pseudo-elemento */
+    overflow: hidden; /* Esconde conteúdo que ultrapasse os limites */
+}
+
+/* Cria efeito de onda quando mouse está sobre o botão usando pseudo-elemento */
+button::before {
+    content: '';  /* Necessário para o pseudo-elemento aparecer */
+    position: absolute; /* Posiciona absolutamente em relação ao botão */
+    top: 50%; /* Posiciona no meio vertical */
+    left: 50%;  /* Posiciona no meio horizontal */
+    width: 0;  /* Inicialmente sem largura */
+    height: 0;  /* Inicialmente sem altura */
+    background-color: rgba(255, 255, 255, 0.2); /* Cor branca semi-transparente */
+    border-radius: 50%;  /* Forma circular */
+    transform: translate(-50%, -50%); /* Centraliza perfeitamente */
+    transition: width 0.6s ease, height 0.6s ease; /* Transição suave para tamanho */
+}
+
+/* Modifica a cor de fundo do botão quando o mouse está sobre ele */
+button:hover {
+    background-color: var(--secondary-color); /* Muda para cor secundária (azul mais escuro) */
+}
+
+/* Expande o efeito de onda quando o mouse está sobre o botão */
+button:hover::before {
+    width: 300px; /* Expande para 300px de largura */
+    height: 300px; /* Expande para 300px de altura */
+}
+
+/* Efeito quando o botão é clicado */
+button:active {
+    transform: scale(0.98);  /* Reduz ligeiramente o tamanho para efeito de "clique" */
+}
+
+/* Define animação keyframe para efeito de flutuação */
+@keyframes float {
+    0% { transform: translateY(0px); }  /* Posição inicial */
+    50% { transform: translateY(-10px); } /* Move 10px para cima no meio da animação */
+    100% { transform: translateY(0px); }  /* Retorna à posição inicial */
+}
+
+/* Aplica animação de flutuação ao container de login */
+.login-container {
+    animation: float 6s ease-in-out infinite; /* Aplica animação infinita com duração de 6s */
+}
+
+/* Estilos responsivos para telas menores */
+@media (max-width: 480px) {
+    .login-container {
+        width: 95%;  /* Aumenta a largura para telas pequenas */
+    }
+}
